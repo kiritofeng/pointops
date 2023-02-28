@@ -1,0 +1,6 @@
+[build-system]
+requires = ["torch", "torchvision", "setuptools>=40.8.0", "wheel"]
+
+[tool.black]
+line-length = 120
+skip-string-normalization = true
