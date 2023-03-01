@@ -4,6 +4,8 @@ import torch
 from torch.autograd import Function
 import torch.nn as nn
 
+import pointops_cuda
+
 
 class FurthestSampling(Function):
     @staticmethod
