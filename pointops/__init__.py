@@ -1,4 +1,4 @@
-from functions import (
+from .functions import (
     furthestsampling,
     gathering,
     nearestneighbor,
@@ -6,7 +6,7 @@ from functions import (
     grouping,
     grouping_int,
     ballquery,
-    featurdistribute,
+    featuredistribute,
     featuregather,
     labelstat_ballrange,
     labelstat_idx,
