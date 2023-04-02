@@ -1,10 +1,12 @@
 from typing import Optional, Tuple
+
 import numpy as np
-import torch
-from torch.autograd import Function
-import torch.nn as nn
 
 import pointops_cuda
+
+import torch
+import torch.nn as nn
+from torch.autograd import Function
 
 
 class FurthestSampling(Function):
@@ -39,7 +41,7 @@ class Gathering(Function):
         """
         assert features.is_contiguous()
         assert idx.is_contiguous()
-        assert feature.device == idx.device
+        assert features.device == idx.device
 
         b, c, n = features.size()
         m = idx.size(1)
@@ -602,7 +604,7 @@ class QueryAndGroup(nn.Module):
             else:
                 new_features = grouped_features
         else:
-            assert self.use_xyz, "Cannot have not features and not use xyz as a feature!"
+            assert self.use_xyz, 'Cannot have not features and not use xyz as a feature!'
 
             new_features = grouped_xyz_diff
 
@@ -658,7 +660,7 @@ class QueryAndGroupForKPConv(nn.Module):
             else:
                 new_features = grouped_features
         else:
-            assert self.use_xyz, "Cannot have not features and not use xyz as a feature!"
+            assert self.use_xyz, 'Cannot have not features and not use xyz as a feature!'
 
             new_features = grouped_xyz_diff
 
