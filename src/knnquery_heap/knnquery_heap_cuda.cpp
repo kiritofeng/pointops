@@ -13,12 +13,13 @@ void knnquery_heap_cuda(int b, int n, int m, int nsample, at::Tensor xyz_tensor,
     CHECK_INPUT(new_xyz_tensor);
     CHECK_INPUT(xyz_tensor);
 
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(new_xyz_tensor));
+
     const float *new_xyz = new_xyz_tensor.data_ptr<float>();
     const float *xyz = xyz_tensor.data_ptr<float>();
     int *idx = idx_tensor.data_ptr<int>();
     float *dist2 = dist2_tensor.data_ptr<float>();
 
-    const at::cuda::OptionalCUDAGuard device_guard(device_of(new_xyz_tensor));
     cudaStream_t stream = at::cuda::getCurrentCUDAStream();
 
     knnquery_heap_cuda_launcher(b, n, m, nsample, xyz, new_xyz, idx, dist2, stream);

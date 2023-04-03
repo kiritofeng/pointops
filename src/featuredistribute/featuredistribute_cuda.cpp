@@ -14,12 +14,13 @@ void featuredistribute_cuda(int b, int n, int m, at::Tensor max_xyz_tensor, at::
     CHECK_INPUT(max_xyz_tensor);
     CHECK_INPUT(xyz_tensor);
 
+    cudaStream_t stream = at::cuda::getCurrentCUDAStream();
+
     const float *max_xyz = max_xyz_tensor.data_ptr<float>();
     const float *xyz = xyz_tensor.data_ptr<float>();
     int *distribute_idx = distribute_idx_tensor.data_ptr<int>();
 
     const at::cuda::OptionalCUDAGuard device_guard(device_of(max_xyz_tensor));
-    cudaStream_t stream = at::cuda::getCurrentCUDAStream();
 
     featuredistribute_cuda_launcher(b, n, m, max_xyz, xyz, distribute_idx, stream);
 }
@@ -30,11 +31,12 @@ void featuregather_forward_cuda(int b, int n, int m, int c, at::Tensor max_featu
     CHECK_INPUT(max_feature_tensor);
     CHECK_INPUT(distribute_idx_tensor);
 
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(max_feature_tensor));
+
     const float *max_feature = max_feature_tensor.data_ptr<float>();
     const int *distribute_idx = distribute_idx_tensor.data_ptr<int>();
     float *distribute_feature = distribute_feature_tensor.data_ptr<float>();
 
-    const at::cuda::OptionalCUDAGuard device_guard(device_of(max_feature_tensor));
     cudaStream_t stream = at::cuda::getCurrentCUDAStream();
 
     featuregather_forward_cuda_launcher(b, n, m, c, max_feature, distribute_idx, distribute_feature, stream);
@@ -46,11 +48,12 @@ void featuregather_backward_cuda(int b, int n, int m, int c, at::Tensor grad_dis
     CHECK_INPUT(grad_distribute_feature_tensor);
     CHECK_INPUT(distribute_idx_tensor);
 
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(grad_distribute_feature_tensor));
+
     const float *grad_distribute_feature = grad_distribute_feature_tensor.data_ptr<float>();
     const int *distribute_idx = distribute_idx_tensor.data_ptr<int>();
     float *grad_max_feature = grad_max_feature_tensor.data_ptr<float>();
 
-    const at::cuda::OptionalCUDAGuard device_guard(device_of(grad_distribute_feature_tensor));
     cudaStream_t stream = at::cuda::getCurrentCUDAStream();
 
     featuregather_backward_cuda_launcher(b, n, m, c, grad_distribute_feature, distribute_idx, grad_max_feature, stream);

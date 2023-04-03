@@ -14,6 +14,8 @@ void labelstat_idx_cuda_fast(int b, int n, int m, int nsample, int nclass,
     CHECK_INPUT(label_stat_tensor);
     CHECK_INPUT(idx_tensor);
 
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(label_stat_tensor));
+
     const int *label_stat = label_stat_tensor.data_ptr<int>();
     const int *idx = idx_tensor.data_ptr<int>();
     int *new_label_stat = new_label_stat_tensor.data_ptr<int>();
@@ -30,6 +32,8 @@ void labelstat_ballrange_cuda_fast(int b, int n, int m, float radius, int nclass
     CHECK_INPUT(new_xyz_tensor);
     CHECK_INPUT(xyz_tensor);
     CHECK_INPUT(label_stat_tensor);
+
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(new_xyz_tensor));
 
     const float *new_xyz = new_xyz_tensor.data_ptr<float>();
     const float *xyz = xyz_tensor.data_ptr<float>();
@@ -49,6 +53,8 @@ void labelstat_and_ballquery_cuda_fast(int b, int n, int m, float radius, int ns
     CHECK_INPUT(xyz_tensor);
     CHECK_INPUT(label_stat_tensor);
     CHECK_INPUT(idx_tensor);
+
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(new_xyz_tensor));
 
     const float *new_xyz = new_xyz_tensor.data_ptr<float>();
     const float *xyz = xyz_tensor.data_ptr<float>();
