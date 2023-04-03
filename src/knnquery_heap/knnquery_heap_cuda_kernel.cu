@@ -104,7 +104,7 @@ void knnquery_heap_cuda_launcher(int b, int n, int m, int nsample, const float *
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed : %s\n", cudaGetErrorString(err));
+        fprintf(stderr, "CUDA kernel failed @ knnquery_heap_cuda_launcher : %s\n", cudaGetErrorString(err));
         exit(-1);
     }
 }

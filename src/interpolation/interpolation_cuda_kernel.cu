@@ -206,7 +206,7 @@ void nearestneighbor_cuda_launcher_fast(int b, int n, int m, const float *unknow
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed : %s\n", cudaGetErrorString(err));
+        fprintf(stderr, "CUDA kernel failed @ nearestneighbor_cuda_launcher_fast: %s\n", cudaGetErrorString(err));
         exit(-1);
     }
 }
@@ -221,7 +221,7 @@ void interpolation_forward_cuda_launcher_fast(int b, int c, int m, int n, const 
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed : %s\n",
+        fprintf(stderr, "CUDA kernel failed @ interpolation_forward_cuda_launcher_fast : %s\n",
         cudaGetErrorString(err));
         exit(-1);
     }
