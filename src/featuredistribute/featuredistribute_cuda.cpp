@@ -14,13 +14,13 @@ void featuredistribute_cuda(int b, int n, int m, at::Tensor max_xyz_tensor, at::
     CHECK_INPUT(max_xyz_tensor);
     CHECK_INPUT(xyz_tensor);
 
-    cudaStream_t stream = at::cuda::getCurrentCUDAStream();
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(max_xyz_tensor));
 
     const float *max_xyz = max_xyz_tensor.data_ptr<float>();
     const float *xyz = xyz_tensor.data_ptr<float>();
     int *distribute_idx = distribute_idx_tensor.data_ptr<int>();
 
-    const at::cuda::OptionalCUDAGuard device_guard(device_of(max_xyz_tensor));
+    cudaStream_t stream = at::cuda::getCurrentCUDAStream();
 
     featuredistribute_cuda_launcher(b, n, m, max_xyz, xyz, distribute_idx, stream);
 }
