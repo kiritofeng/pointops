@@ -138,7 +138,7 @@ __global__ void labelstat_idx_cuda_kernel_fast(int b, int n, int m, int nsample,
     label_stat += bs_idx * n * nclass;
     new_label_stat += bs_idx * m * nclass + pt_idx * nclass;
 
-    for(int i = 0; i < nclass; i++){lltm_forward
+    for(int i = 0; i < nclass; i++){
         new_label_stat[i] = 0;
     }
 

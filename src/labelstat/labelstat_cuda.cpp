@@ -1,6 +1,6 @@
 #include <torch/serialize/tensor.h>
 #include <ATen/cuda/CUDAContext.h>
-#include <c10/cuda/DeviceGuard.h>
+#include <c10/cuda/CUDAGuard.h>
 
 #include "labelstat_cuda_kernel.h"
 

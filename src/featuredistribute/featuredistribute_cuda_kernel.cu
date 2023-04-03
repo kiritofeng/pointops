@@ -80,7 +80,7 @@ void featuregather_forward_cuda_launcher(int b, int n, int m, int c, const float
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed featuregather_forward_cuda_launcher : %s\n", cudaGetErrorString(err));
+        fprintf(stderr, "CUDA kernel failed @ featuregather_forward_cuda_launcher : %s\n", cudaGetErrorString(err));
         exit(-1);
     }
 }
