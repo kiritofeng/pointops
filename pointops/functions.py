@@ -141,7 +141,6 @@ class Grouping(Function):
         assert features.is_contiguous()
         assert idx.is_contiguous()
         assert features.device == idx.device
-        assert features.device != torch.device('cpu')
 
         b, c, n = features.size()
         _, m, nsample = idx.size()
