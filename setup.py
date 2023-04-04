@@ -35,7 +35,7 @@ setup(
                 'src/sampling/sampling_cuda.cpp',
                 'src/sampling/sampling_cuda_kernel.cu',
             ],
-            extra_compile_args={'cxx': ['-g'], 'nvcc': ['-O2']},
+            extra_compile_args={'cxx': ['-O2'], 'nvcc': ['-O2']},
         )
     ],
     packages=['pointops'],

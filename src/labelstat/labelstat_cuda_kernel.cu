@@ -64,7 +64,7 @@ void labelstat_and_ballquery_cuda_launcher_fast(int b, int n, int m, float radiu
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed : %s\n", cudaGetErrorString(err));
+        fprintf(stderr, "CUDA kernel failed @ labelstat_and_ballquery_cuda_launcher_fast: %s\n", cudaGetErrorString(err));
         exit(-1);
     }
 }
@@ -121,7 +121,7 @@ void labelstat_ballrange_cuda_launcher_fast(int b, int n, int m, float radius, i
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed : %s\n", cudaGetErrorString(err));
+        fprintf(stderr, "CUDA kernel failed @ labelstat_ballrange_cuda_launcher_fast: %s\n", cudaGetErrorString(err));
         exit(-1);
     }
 }
@@ -167,7 +167,7 @@ void labelstat_idx_cuda_launcher_fast(int b, int n, int m, int nsample, int ncla
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed : %s\n", cudaGetErrorString(err));
+        fprintf(stderr, "CUDA kernel failed @ labelstat_idx_cuda_launcher_fast: %s\n", cudaGetErrorString(err));
         exit(-1);
     }
 }

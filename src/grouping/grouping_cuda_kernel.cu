@@ -86,7 +86,7 @@ void grouping_forward_cuda_launcher_fast(int b, int c, int n, int npoints, int n
     // cudaDeviceSynchronize();  // for using printf in kernel function
     err = cudaGetLastError();
     if (cudaSuccess != err) {
-        fprintf(stderr, "CUDA kernel failed : %s\n", cudaGetErrorString(err));
+        fprintf(stderr, "CUDA kernel failed @ grouping_forward_cuda_launcher_fast : %s\n", cudaGetErrorString(err));
         exit(-1);
     }
 }

@@ -1,6 +1,6 @@
 #include <torch/serialize/tensor.h>
-#include <vector>
 #include <ATen/cuda/CUDAContext.h>
+#include <c10/cuda/CUDAGuard.h>
 
 #include "knnquery_heap_cuda_kernel.h"
 
@@ -12,6 +12,8 @@ void knnquery_heap_cuda(int b, int n, int m, int nsample, at::Tensor xyz_tensor,
 {
     CHECK_INPUT(new_xyz_tensor);
     CHECK_INPUT(xyz_tensor);
+
+    const at::cuda::OptionalCUDAGuard device_guard(device_of(new_xyz_tensor));
 
     const float *new_xyz = new_xyz_tensor.data_ptr<float>();
     const float *xyz = xyz_tensor.data_ptr<float>();
