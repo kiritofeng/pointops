@@ -83,7 +83,7 @@ void grouping_forward_cuda_launcher_fast(int b, int c, int n, int npoints, int n
     dim3 threads(THREADS_PER_BLOCK);
 
     grouping_forward_cuda_kernel_fast<<<blocks, threads, 0>>>(b, c, n, npoints, nsample, points, idx, out);
-    cudaDeviceSynchronize();  // for using printf in kernel function
+    // cudaDeviceSynchronize();  // for using printf in kernel function
     err = cudaGetLastError();
     if (cudaSuccess != err) {
         fprintf(stderr, "CUDA kernel failed @ grouping_forward_cuda_launcher_fast : %s\n", cudaGetErrorString(err));

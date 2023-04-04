@@ -204,7 +204,7 @@ void nearestneighbor_cuda_launcher_fast(int b, int n, int m, const float *unknow
 
     nearestneighbor_cuda_kernel_fast<<<blocks, threads, 0>>>(b, n, m, unknown, known, dist2, idx);
 
-    cudaDeviceSynchronize();  // for using printf in kernel function
+    // cudaDeviceSynchronize();  // for using printf in kernel function
     err = cudaGetLastError();
     if (cudaSuccess != err) {
         fprintf(stderr, "CUDA kernel failed @ nearestneighbor_cuda_launcher_fast: %s\n", cudaGetErrorString(err));
@@ -220,7 +220,7 @@ void interpolation_forward_cuda_launcher_fast(int b, int c, int m, int n, const 
     dim3 threads(THREADS_PER_BLOCK);
     interpolation_forward_cuda_kernel_fast<<<blocks, threads, 0>>>(b, c, m, n, points, idx, weight, out);
 
-    cudaDeviceSynchronize();  // for using printf in kernel function
+    // cudaDeviceSynchronize();  // for using printf in kernel function
     err = cudaGetLastError();
     if (cudaSuccess != err) {
         fprintf(stderr, "CUDA kernel failed @ interpolation_forward_cuda_launcher_fast : %s\n",

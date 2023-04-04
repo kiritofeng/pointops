@@ -60,7 +60,7 @@ void labelstat_and_ballquery_cuda_launcher_fast(int b, int n, int m, float radiu
     dim3 threads(THREADS_PER_BLOCK);
 
     labelstat_and_ballquery_cuda_kernel_fast<<<blocks, threads, 0, stream>>>(b, n, m, radius, nsample, nclass, new_xyz, xyz, label_stat, idx, new_label_stat);
-    cudaDeviceSynchronize();  // for using printf in kernel function
+    // cudaDeviceSynchronize();  // for using printf in kernel function
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
@@ -117,7 +117,7 @@ void labelstat_ballrange_cuda_launcher_fast(int b, int n, int m, float radius, i
     dim3 threads(THREADS_PER_BLOCK);
 
     labelstat_ballrange_cuda_kernel_fast<<<blocks, threads, 0, stream>>>(b, n, m, radius, nclass, new_xyz, xyz, label_stat, new_label_stat);
-    cudaDeviceSynchronize();  // for using printf in kernel function
+    // cudaDeviceSynchronize();  // for using printf in kernel function
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
@@ -163,7 +163,7 @@ void labelstat_idx_cuda_launcher_fast(int b, int n, int m, int nsample, int ncla
     dim3 threads(THREADS_PER_BLOCK);
 
     labelstat_idx_cuda_kernel_fast<<<blocks, threads, 0, stream>>>(b, n, m, nsample, nclass, label_stat, idx, new_label_stat);
-    cudaDeviceSynchronize();  // for using printf in kernel function
+    // cudaDeviceSynchronize();  // for using printf in kernel function
 
     err = cudaGetLastError();
     if (cudaSuccess != err) {
